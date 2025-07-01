@@ -1,33 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import { useState } from 'react';
+import useFetch from './hooks/UseFetch'
+import MapView from './components/MapView';
+
+
+
+const API_KEY = import.meta.env.VITE_IP_TRACKER_API;
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [search, setSearch] = useState('');
+const [query, setQuery] = useState('');
+
+
+    const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}${query ? `&ipAddress=${query}` : ''}`;
+  const { data, loading, error } = useFetch(url);
+  
+
+  
+const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery(search);
+  };
+
+  // useEffect({
+
+
+
+  // },[])
+
+  
+  
+if (error) return <p>console.error(.message );</p>
+
+  const result =data?.ip[0]
+
+if(loading || !result ) return <h2 className="text-5xl animate-bounce">loading...</h2>
+
+  console.log(data)
+
+  const lat = data.location?.lat;
+  const lng = data.location?.lng;
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+           <form onSubmit={handleSubmit} className="mb-4 flex gap-2">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Enter IP or domain"
+          className="p-2 border rounded w-full"
+        />
+        <button type="submit" className="w-50 px-4 py-2 bg-blue-600 text-white rounded">
+          Search
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      </form>
+    {lat && lng && <MapView lat={lat} lng={lng} />}
+
+        <h1>{data.location?.city}</h1>
+        <p>{data.location?.region}</p>
+        <p>{data.location?.time}</p>
+       <p>{data.ip}</p> 
+        
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
