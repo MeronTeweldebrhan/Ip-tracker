@@ -18,20 +18,29 @@ function useFetch(url, options) {
     const fetchData = async () => {
       try {
         const response = await fetch(url, { ...options, signal: controller.signal });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const result = await response.json();
+
+        if (!response.ok) {
+          // Extract specific error message from response if available
+          throw {
+            status: response.status,
+            message: result?.messages?.[0] || result?.message || response.statusText,
+          };
+        }
+
         setData(result);
       } catch (err) {
-        if (err.name !== 'AbortError') { // Don't set error if aborted
-          setError(err);
+        if (err.name !== 'AbortError') {
+          setError({
+            status: err.status || 500,
+            message: err.message || 'An unexpected error occurred',
+          });
         }
       } finally {
         setLoading(false);
       }
     };
- 
+
     fetchData();
  
     // Cleanup function
