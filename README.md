@@ -1,12 +1,66 @@
-# React + Vite
+# IP Address Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive web app that displays the location, timezone, and ISP details of an IP address or domain, with an interactive map view.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+### The challenge
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Build a React-based app to fetch and display IP geolocation data.
+- Show IP address, city, region, timezone, and ISP.
+- Display a map view centered on the returned location.
+- Make it responsive for all screen sizes.
+
+### Screenshot
+
+
+
+![Working Screenshot](./src/assets/Screenshot%202025-07-02%20145422.png)
+
+
+### Links
+
+- Live Site: [Ip Tracker ](https://ip-tracker-d5qi.vercel.app/)
+- GitHub Repo: [Repository Link](https://github.com/MeronTeweldebrhan/Ip-tracker)
+
+## My process
+
+### Built with
+
+- React
+- usehook
+- Tailwind CSS
+- IPify API (geo.ipify.org)
+- Leaflet JS  `npm install react-leaflet`
+
+### What I learned
+
+- How to integrate external APIs in React.
+- Handling loading and error states.
+- Tailwind layout and styling practices.
+- Environment variable handling in Vite.
+- fetching with usehook to mentain resuablity.
+
+### Continued development
+
+- Fix production API access via IPify dashboard.
+- Add reverse geolocation (from map click).
+- Dark mode toggle and theme support.
+
+### Useful resources
+
+- [IPify Docs](https://geo.ipify.org/)
+- [Leaflet JS Docs](https://leafletjs.com/)
+- [Tailwind Docs](https://tailwindcss.com/)
+
+## Author
+
+- GitHub: [meron Tewelebrahn ](https://github.com/MeronTeweldebrhan)
+- LinkedIn: [meron Tewelebrahn ](www.linkedin.com/in/meron-teweldebrhan)
+
+## Acknowledgments
+
+- Frontend Mentor inspiration
+- IPify for free API usage
+- OpenStreetMap + Leaflet for map rendering
