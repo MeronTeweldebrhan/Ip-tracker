@@ -48,7 +48,12 @@ function App() {
       {error && (
         <div className="bg-red-100 text-red-700 border border-red-300 rounded p-4 mt-6 w-full max-w-xl text-center">
           <p className="font-semibold">Error: {error.message}</p>
-          <p className="text-sm mt-1">This app may only fetch data in production. API requests might fail during development or if CORS is not configured.</p>
+          <p className="text-sm mt-1">This app may only fetch data in development. but it fails after deployment This is likely due to:</p>
+          <ul className="text-sm text-left list-disc list-inside mt-2 space-y-1">
+      <li>CORS restrictions on the API provider (e.g. geo.ipify.org).</li>
+      <li>Missing or misconfigured billing/API key settings for production.</li>
+      <li>Allowed domains not configured for deployed site in API dashboard.</li>
+    </ul>
         </div>
       )}
 
