@@ -2,6 +2,7 @@ import { useState } from "react";
 import useFetch from "./hooks/UseFetch";
 import MapView from "./components/MapView";
 import bgImage from "../src/assets/bgImage.png";
+import { FaSearch } from "react-icons/fa";
 
 const API_KEY = import.meta.env.VITE_IP_TRACKER_API;
 
@@ -23,31 +24,34 @@ function App() {
   const lng = data?.location?.lng;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      {/* Header with background image */}
-      <div
-        className="w-full bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
-        <div className="w-full max-w-3xl mx-auto py-10 px-4 text-center text-white">
-          <h1 className="text-3xl font-bold mb-4">IP Address Tracker</h1>
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Enter IP or domain"
-              className="bg-amber-50 flex-1 p-3 rounded-md text-black focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="mr-5 w-20 h-12 bg-no-repeat bg-center bg-black rounded-md "
-              aria-label="Search"
-            >
-              {" "}
-              🔍 search{" "}
-            </button>
-          </form>
+  <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+  {/* Header with background image */}
+  <div
+    className="w-full h-60 bg-cover bg-center relative"
+    style={{ backgroundImage: `url(${bgImage})` }}
+  >
+    <div className="w-full max-w-3xl mx-auto py-10 px-4 text-center text-white">
+      <h1 className="text-3xl font-bold mb-4">IP Address Tracker</h1>
+     <form
+  onSubmit={handleSubmit}
+  className="flex w-full max-w-xl mx-auto shadow-lg rounded-full overflow-hidden bg-white"
+>
+  <input
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    placeholder="Search for any IP address or domain"
+    className="flex-grow p-4 text-gray-700 placeholder-gray-400 focus:outline-none"
+  />
+  <button
+    type="submit"
+    className="w-14 bg-black flex items-center justify-center hover:bg-gray-800"
+    aria-label="Search"
+  >
+    <FaSearch className="text-white text-lg" />
+  </button>
+</form>
+
         </div>
       </div>
 
@@ -85,7 +89,7 @@ function App() {
       {/* Results */}
       {data && (
         <>
-          <div className="w-full max-w-5xl bg-white rounded-lg shadow-md p-6  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-gray-800">
+          <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  md:text-left -mt-14 z-10 ">
             <p>
               <span className="font-semibold text-gray-900">IP Address:</span>
               <br />
