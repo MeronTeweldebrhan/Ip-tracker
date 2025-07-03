@@ -89,7 +89,7 @@ function App() {
       {/* Results */}
       {data && (
         <>
-          <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  md:text-left -mt-14 z-10 ">
+          <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left -mt-14 z-10 relative">
             <p>
               <span className="font-semibold text-gray-900">IP Address:</span>
               <br />
